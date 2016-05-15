@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   
   get 'caueat/restaurant'
   get 'caueat/pub' => "caueat#pub"
-
+  post 'caueat/restaurantcomment' => "caueat#restaurantcomment"
+  post 'caueat/pubcomment' => "caueat#pubcomment"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
