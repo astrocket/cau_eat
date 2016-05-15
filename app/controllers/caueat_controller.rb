@@ -23,10 +23,10 @@ class CaueatController < ApplicationController
   def pubcomment
     pubcomment = Pubcomment.new
     pubcomment.content = params[:content]
-    pubcomment.restaurant_id = params[:id_of_restaurant]
+    pubcomment.pub_id = params[:id_of_pub]
     pubcomment.writer = params[:writer]
     pubcomment.save
     
-    redirect_to "/"
+    redirect_to "/caueat/pub"
   end
 end

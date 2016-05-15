@@ -14,20 +14,20 @@
                   <div class="col s12">
                     <div class="card blue-grey darken-1">
                       <div class="card-action">
-                        <form class="col s12" action="/caueat/restaurantcomment" method="POST">
-                          <input type="hidden" value="<%= @pub.id %>" name="id_of_restaurant">
+                        <form class="col s12" action="/caueat/pubcomment" method="POST">
+                          <input type="hidden" value="<%= @pub.id %>" name="id_of_pub">
                           <div class="input-field col s3">
-                            <input value="Alvin" id="restaurant_writer" name="writer" type="text" class="validate">
-                            <label class="active" for="restaurant_writer">First Name</label>
+                            <input value="Alvin" id="pub_writer" name="writer" type="text" class="validate">
+                            <label class="active" for="pub_writer">First Name</label>
                           </div>
                           <div class="input-field col s8">
-                            <input value="Alvin" id="restaurant_content" name="content" type="text" class="validate">
-                            <label class="active" for="restaurant_content">First Name</label>
+                            <input value="Alvin" id="pub_content" name="content" type="text" class="validate">
+                            <label class="active" for="pub_content">First Name</label>
                           </div>
                           <button class="btn waves-effect waves-light" type="submit" name="action" style="float:right;">Submit</button>
                         </form>
                       </div>
-                      <% @pub.restaurantcomments.each do |r| %>
+                      <% @pub.pubcomments.each do |r| %>
                       <div class="card-content white-text">
                         <span class="card-title"><%= r.writer %></span>
                         <p><%= r.content %></p>
