@@ -17,21 +17,28 @@
   <script>
     $(".button-collapse").sideNav();
   </script>
-  <script
-    src="http://maps.googleapis.com/maps/api/js">
-  </script>
 </head>
 <body>
 <%= yield %>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=2e20c92d8ee63468ee059883b2131603"></script>
+    	<script>
+    		var container = document.getElementById('maprestaurant');
+    		var options = {
+    			center: new daum.maps.LatLng(51.508742,-0.120850),
+    			level: 16
+    		};
+    
+    		var map = new daum.maps.Map(container, options);
+    	</script>
 </body>
         <footer class="page-footer teal">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">중앙대 오늘 어디갈까?</h5>
-                <p class="grey-text text-lighten-4">만든이 : 이한결</p>
+                <p class="grey-text text-lighten-4">만든이 : 신선우, 신정민, 이한결, 최효진</p>
               </div>
             </div>
           </div>
