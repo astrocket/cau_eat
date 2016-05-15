@@ -40,25 +40,3 @@
         </div>
       </div>
 </div>
-
-
-            <div class="row">
-              <form class="col s12" action="/caueat/restaurantcomment" method="POST">
-                <div class="row">
-                  <div class="input-field col s6">
-                    <input value="Alvin" id="first_name2" name="writer" type="text" class="validate">
-                    <label class="active" for="first_name2">First Name</label>
-                  </div>
-                  <div class="input-field col s12">
-                    <input type="hidden" value="<%= @restaurant.id %>" name="id_of_restaurant">
-                    <% @restaurant.restaurantcomments.each do |r| %>
-                      <p>작성자 : <%= r.writer %></p>
-                      <p>내용 : <%= r.content %></p>
-                    <% end %>
-                    <textarea id="textarea1" name = "content" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Textarea</label>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-                  </div>
-                </div>
-              </form>
-            </div>
