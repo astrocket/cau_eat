@@ -7,7 +7,7 @@
               <h2 class="center-align"><%= @restaurant.title %></h2>
             </div>
             <div class="card-action">
-                <a class="waves-effect waves-light btn-large" href="/">뭐먹지?</a>
+                <a class="waves-effect waves-light btn-large" href="/" style="margin-left:1%;">뭐먹지?</a>
                 <a class="waves-effect waves-light btn-large" href="/caueat/pub">술집은?</a>
             </div>
           </div>
@@ -15,28 +15,52 @@
             <div class="col s12">
               <div class="card blue-grey darken-1">
                 <div class="card-action">
-                  <form class="col s12" action="/caueat/restaurantcomment" method="POST">
                     <input type="hidden" value="<%= @restaurant.id %>" name="id_of_restaurant">
                     <div class="input-field col s3">
-                      <input value="익명" placeholder="익명" id="restaurant_writer" name="writer" type="text" class="validate">
-                      <label class="active" for="restaurant_writer">작성자</label>
+                      <input placeholder="이름" id="restaurant_writer_<%= @restaurant.id %>" name="writer" type="text" class="validate">
+                      <label class="active" for="restaurant_writer">작성자(필수)</label>
                     </div>
-                    <div class="input-field col s8">
-                      <input placeholder="맛있어요!" id="restaurant_content" name="content" type="text" class="validate">
-                      <label class="active" for="restaurant_content">댓글</label>
+                    <div class="input-field col s9">
+                      <input placeholder="맛있어요!" id="restaurant_content_<%= @restaurant.id %>" name="content" type="text" class="validate">
+                      <label class="active" for="restaurant_content">댓글(필수)</label>
                     </div>
-                    <button class="btn waves-effect waves-light" type="submit" name="action" style="float:right;">Submit</button>
-                  </form>
+                      <button class="btn waves-effect waves-light" id="reply_submit" value="<%= @restaurant.id %>" type="submit" name="action" style="float:right;">댓글</button>
                 </div>
-                <% @restaurant.restaurantcomments.each do |r| %>
-                <div class="card-content white-text">
-                  <span class="card-title"><%= r.writer %></span>
-                  <p><%= r.content %></p>
-                </div>
-                <% end %>
+                  <div class="card-content white-text">
+                    <div id="reply_<%= @restaurant.id %>">
+                    </div>
+                  </div>
+                  <% @restaurant.restaurantcomments.reverse_each do |r| %>
+                    <div class="card-content white-text">
+                      <span class="card-title">ㄴ<%= r.writer %></span>
+                      <p><%= r.content %></p>
+                      <p><%= r.created_at %></p>
+                    </div>
+                  <% end %>
               </div>
             </div>
           </div>
         </div>
       </div>
 </div>
+
+<script>
+$(function() {
+  $('#reply_submit').click(function(){
+    post_id_ajax = this.value
+    reply_writer_ajax = $("#restaurant_writer_" + post_id_ajax).val();
+    reply_content_ajax = $("#restaurant_content_" + post_id_ajax).val();
+    $.ajax({
+      method: "POST",
+      url: "/caueat/restaurantcomment",
+      data: { writer: reply_writer_ajax, content: reply_content_ajax, id_of_restaurant: post_id_ajax }
+    })
+    .done(function( msg ) {
+      $( "#reply_" + post_id_ajax ).append("<span class=\"card-title\">" + reply_writer_ajax + "</span>");
+      $( "#reply_" + post_id_ajax ).append("<p>" + reply_content_ajax + "</p>");
+      $("#restaurant_writer_" + post_id_ajax).val('');
+      $("#restaurant_content_" + post_id_ajax).val('');
+    });
+  });
+});
+</script>

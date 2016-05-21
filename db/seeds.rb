@@ -10,7 +10,7 @@ restaurant_list = [
   "유정쌈밥",
   "뚝배기스파게티",
   "육쌈냉면",
-  "맥도날드",
+  "맥도날드"
 ]
 
 restaurant_list.each do |title|
@@ -18,17 +18,17 @@ restaurant_list.each do |title|
 end
 
 pub_list = [
-  ["레드락","1","2"],
-  ["봉구비어","1","2"],
-  ["삼거리포차","3","4"],
-  ["스파이키","7","5"],
-  ["옹골진","7","5"],
-  ["잠꾸러기","3","4"],
-  ["장독대","1","3"],
-  ["캐빈","6","5"],
-  ["프렌즈","2","4"]
+  "레드락",
+  "봉구비어",
+  "삼거리포차",
+  "스파이키",
+  "옹골진"
+  #"잠꾸러기",
+  #"장독대",
+  #"캐빈",
+  #"프렌즈",
 ]
 
-pub_list.each do |title, mapx, mapy|
-  Pub.create( title: title, mapx: mapx, mapy: mapy )
+pub_list.each do |title|
+  Pub.create( title: title )
 end
